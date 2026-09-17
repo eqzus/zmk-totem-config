@@ -289,12 +289,42 @@
             >;
         };
 
+        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
         layer_6 {
+            // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+
+            label = "SNAP";
+
+            // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+            //
+            // Nås via comboen på position 28+29 (, och .) som ger &sl 6,
+            // dvs ett sticky lager: tryck comboen, släpp, tryck sedan R.
+            //
+            // Övre raden sparar som FIL på skrivbordet, raden under lägger
+            // samma bild i URKLIPP (macOS: samma genväg plus Ctrl).
+            //
+            //   E  Cmd+Shift+3            hela skärmen
+            //   R  Cmd+Shift+4            markera område
+            //   T  Cmd+Shift+5            skärmbildsverktyget (meny, ej fil)
+            //   D  Ctrl+Cmd+Shift+3       hela skärmen -> urklipp
+            //   F  Ctrl+Cmd+Shift+4       markera område -> urklipp
+            //
+            //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+            //             ┃           ┃           ┃  HELA FIL ┃ OMRÅD FIL ┃  VERKTYG  ┃   ┃           ┃           ┃           ┃           ┃           ┃
+            //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+            //             ┃           ┃           ┃ HELA URKL ┃ OMRÅD URKL┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
+            // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+            // ┃           ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃           ┃
+            // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+            //                                     ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃
+            //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+
             bindings = <
-        &trans  &trans  &trans  &kp LC(LS(LG(N4)))  &trans    &trans  &trans  &trans  &trans  &trans
-        &trans  &trans  &trans  &trans              &trans    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans              &trans    &trans  &trans  &trans
+        &trans  &trans  &kp LG(LS(N3))      &kp LG(LS(N4))      &kp LG(LS(N5))    &trans  &trans  &trans  &trans  &trans
+        &trans  &trans  &kp LC(LG(LS(N3)))  &kp LC(LG(LS(N4)))  &trans            &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans              &trans              &trans            &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans              &trans              &trans            &trans  &trans  &trans
             >;
         };
     };
