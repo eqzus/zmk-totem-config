@@ -34,15 +34,15 @@
 // OBS: < > | ~ ligger som EGNA tangenter i SYM. På US-layout fick man dem
 // gratis via shift (Shift+, gav <, Shift+\ gav |), men på svensk layout ger
 // samma shift ; respektive * — därför måste de bindas uttryckligen.
-// < och > delar en tangent, men VILKEN scancode som fungerar beror på om
-// macOS tror att tangentbordet är ANSI eller ISO. macOS byter plats på
-// GRAVE (0x35) och NON_US_BSLH (0x64) mellan de två lägena.
-//   ANSI-identifierat (normalfallet för Totem): GRAVE ger < / >
-//   ISO-identifierat:                           NON_US_BSLH ger < / >
-// Båda ligger inlagda: GRAVE på C-tangenten, NON_US_BSLH på vänster yttre
-// tumtangent. Använd den som fungerar; den andra ger § / ° och kan tas bort.
-// Alternativt: Systeminställningar > Tangentbord > "Ändra tangentbordstyp"
-// och identifiera brädan som ISO — då är NON_US_BSLH den rätta.
+// < och > delar en tangent: GRAVE ger < och med shift >. Det ser fel ut,
+// och det ÄR fel i teorin — men macOS byter plats på GRAVE (0x35) och
+// NON_US_BSLH (0x64) beroende på om den tror att brädan är ANSI eller ISO,
+// och Totem hamnar i ANSI-läget.
+//
+// Verifierat med Tangentbordsvisning: NON_US_BSLH tänder tangenten vänster
+// om 1 (alltså § / °), vilket betyder att GRAVE är den som når <-tangenten.
+// Byter macOS identifiering till ISO kastas de om — då är NON_US_BSLH rätt
+// igen. Kolla i så fall med Tangentbordsvisning innan du ändrar något.
 //
 // Teckentabell (macOS Svensk – Pro), för framtida redigering:
 //
@@ -221,14 +221,14 @@
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
             // ┃     :     ┃   EMAIL1  ┃   EMAIL2  ┃   < / >   ┃     |     ┃     !     ┃   ┃    VOL-   ┃    VOL+   ┃    LAST   ┃    NEXT   ┃     \     ┃   ä / Ä   ┃
             // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-            //                                     ┃  < > ISO  ┃    GIF    ┃    ADJ    ┃   ┃           ┃           ┃    PLAY   ┃
+            //                                     ┃           ┃    GIF    ┃    ADJ    ┃   ┃           ┃           ┃    PLAY   ┃
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
               &kp LS(N1)   &kp RA(N2)   &kp LS(N3)  &kp RA(N4)  &kp LS(N5)     &caret        &kp LS(N6)    &kp RBKT      &kp BSLH    &kp LS(N2)
               &kp LBKT     &tilde       &kp RA(S)   &btick      &kp LS(MINUS)  &kp C_MUTE    &kp RA(Y)     &kp LS(N4)    &kp RA(N3)  &kp SEMI
 &kp LS(DOT)   &kp RA(F18)  &kp RA(F19)  &kp GRAVE        &kp RA(N7)  &kp LS(N1)     &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV    &kp C_NEXT  &kp LS(RA(N7))  &kp SQT
-                            &kp NON_US_BSLH     &gif       &mo ADJ            &trans        &trans          &kp C_PLAY_PAUSE
+                                     &trans     &gif       &mo ADJ            &trans        &trans          &kp C_PLAY_PAUSE
             >;
         };
 
