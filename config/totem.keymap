@@ -29,7 +29,13 @@
 //
 // Priset: ^ och ` är dödtangenter på svensk layout och behöver ett
 // efterföljande mellanslag. De två är därför makron här. Samma sak gäller
-// ~ om du vill lägga till det: <&kp RA(RBKT) &kp SPACE>.
+// ~ som också finns med här som makro.
+//
+// OBS: < > | ~ ligger som EGNA tangenter i SYM. På US-layout fick man dem
+// gratis via shift (Shift+, gav <, Shift+\ gav |), men på svensk layout ger
+// samma shift ; respektive * — därför måste de bindas uttryckligen.
+// < och > delar en tangent: NON_US_BSLH ger < och med shift >. Tangenten
+// finns inte fysiskt på Totem, men ZMK kan skicka dess scancode ändå.
 //
 // Teckentabell (macOS Svensk – Pro), för framtida redigering:
 //
@@ -117,6 +123,14 @@
             label = "CARET";
         };
 
+        tilde: tilde {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp RA(RBKT) &kp SPACE>;
+
+            label = "TILDE";
+        };
+
         btick: btick {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -196,17 +210,17 @@
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
             //             ┃     !     ┃     @     ┃     #     ┃     $     ┃     %     ┃   ┃     ˆ     ┃     &     ┃     Ü     ┃     '     ┃     "     ┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-            //             ┃   å / Å   ┃           ┃     SZ    ┃     `     ┃     ?     ┃   ┃    MUTE   ┃   YEN ¥   ┃   EURO €  ┃  POUND £  ┃   ö / Ö   ┃
+            //             ┃   å / Å   ┃     ~     ┃     SZ    ┃     `     ┃     ?     ┃   ┃    MUTE   ┃   YEN ¥   ┃   EURO €  ┃  POUND £  ┃   ö / Ö   ┃
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-            // ┃     :     ┃   EMAIL1  ┃   EMAIL2  ┃           ┃           ┃     !     ┃   ┃    VOL-   ┃    VOL+   ┃    LAST   ┃    NEXT   ┃     \     ┃   ä / Ä   ┃
+            // ┃     :     ┃   EMAIL1  ┃   EMAIL2  ┃   < / >   ┃     |     ┃     !     ┃   ┃    VOL-   ┃    VOL+   ┃    LAST   ┃    NEXT   ┃     \     ┃   ä / Ä   ┃
             // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
             //                                     ┃           ┃    GIF    ┃    ADJ    ┃   ┃           ┃           ┃    PLAY   ┃
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
               &kp LS(N1)   &kp RA(N2)   &kp LS(N3)  &kp RA(N4)  &kp LS(N5)     &caret        &kp LS(N6)    &kp RBKT      &kp BSLH    &kp LS(N2)
-              &kp LBKT     &trans       &kp RA(S)   &btick      &kp LS(MINUS)  &kp C_MUTE    &kp RA(Y)     &kp LS(N4)    &kp RA(N3)  &kp SEMI
-&kp LS(DOT)   &kp RA(F18)  &kp RA(F19)  &trans      &trans      &kp LS(N1)     &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV    &kp C_NEXT  &kp LS(RA(N7))  &kp SQT
+              &kp LBKT     &tilde       &kp RA(S)   &btick      &kp LS(MINUS)  &kp C_MUTE    &kp RA(Y)     &kp LS(N4)    &kp RA(N3)  &kp SEMI
+&kp LS(DOT)   &kp RA(F18)  &kp RA(F19)  &kp NON_US_BSLH  &kp RA(N7)  &kp LS(N1)     &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV    &kp C_NEXT  &kp LS(RA(N7))  &kp SQT
                                      &trans     &gif       &mo ADJ            &trans        &trans          &kp C_PLAY_PAUSE
             >;
         };
